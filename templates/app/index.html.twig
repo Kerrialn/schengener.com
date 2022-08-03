@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 col-md-4">
                 {% if country %}
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between">
                             <div>
                                 <div class="h3 m-0">{{ country.title|trans }}</div>
@@ -54,7 +54,8 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <div class="d-flex">
                                     <div>{{ 'stay-duration'|trans }}</div>
-                                    <div class="ms-1" role="button" data-bs-toggle="modal" data-bs-target="#stay-duration-modal">
+                                    <div class="ms-1" role="button" data-bs-toggle="modal"
+                                         data-bs-target="#stay-duration-modal">
                                         <i class="bi bi-info-circle-fill"></i>
                                     </div>
                                 </div>
@@ -78,7 +79,8 @@
                                 <li class="list-group-item d-flex justify-content-between">
                                     <div class="d-flex">
                                         <div>{{ 'duration-over-ninety-days'|trans }}</div>
-                                        <div class="ms-1" role="button" data-bs-toggle="modal" data-bs-target="#over-stay-consequences-modal">
+                                        <div class="ms-1" role="button" data-bs-toggle="modal"
+                                             data-bs-target="#over-stay-consequences-modal">
                                             <i class="bi bi-info-circle-fill"></i>
                                         </div>
                                     </div>
