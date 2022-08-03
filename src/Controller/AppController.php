@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Dto\StayDataTransferObject;
+use App\Entity\Country;
 use App\Form\CalculatorFormType;
 use App\Repository\CountryRepository;
 use App\Service\CalculatorService\CalculatorService;
@@ -34,10 +35,10 @@ class AppController extends AbstractController
             $exit = $form->get('exit')->getData();
             $stay = $this->calculatorService->calculate($entry, $exit);
             $country = $this->countryRepository->findOneBy([
-                'title' => $nationality
+                'code' => $nationality
             ]);
 
-            if(!$country){
+            if(!$country instanceof Country){
                 $form->get('nationality')->addError(new FormError('unable to find country'));
             }
 

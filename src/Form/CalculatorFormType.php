@@ -28,6 +28,7 @@ class CalculatorFormType extends AbstractType
         $builder
             ->add('nationality', CountryType::class, [
                 'label' => $this->translator->trans('nationality'),
+                'alpha3' => true,
                 'row_attr' => [
                     'class' => 'form-floating',
                 ],
