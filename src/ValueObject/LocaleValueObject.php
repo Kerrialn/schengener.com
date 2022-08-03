@@ -7,7 +7,7 @@ use Symfony\Component\Intl\Locales;
 class LocaleValueObject
 {
     private const SUPPORTED_LOCALES = [
-        'en', 'es', 'ru', 'ar'
+        'en', 'fr', 'es', 'ru', 'ar', 'he'
     ];
 
     public static function getSupportedLocales(): array

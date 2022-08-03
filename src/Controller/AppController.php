@@ -38,15 +38,15 @@ class AppController extends AbstractController
                 'code' => $nationality
             ]);
 
-            if(!$country instanceof Country){
+            if (!$country instanceof Country) {
                 $form->get('nationality')->addError(new FormError('unable to find country'));
             }
 
-            if($stay->getEntry()->isAfter(Carbon::now())){
+            if ($stay->getEntry()->isAfter(Carbon::now())) {
                 $form->get('entry')->addError(new FormError('Entry can not be after today'));
             }
 
-            if($stay->getExit()->isBefore($stay->getEntry())){
+            if ($stay->getExit()->isBefore($stay->getEntry())) {
                 $form->get('exit')->addError(new FormError('Exit can not be before entry'));
             }
 
@@ -69,13 +69,13 @@ class AppController extends AbstractController
     }
 
     #[Route(path: '/rules/stay-rules', name: 'shengen_stay_rules')]
-    public function stayDurationRules() : Response
+    public function stayDurationRules(): Response
     {
         return $this->render('/rules/stay-duration-modal.html.twig');
     }
 
     #[Route(path: '/rules/overstay-consequences', name: 'shengean_visa_overstay_consequences')]
-    public function shengeanVisaOverstayConsequences() : Response
+    public function shengeanVisaOverstayConsequences(): Response
     {
         return $this->render('/rules/shengean-visa-overstay-consequences-modal.html.twig');
     }
