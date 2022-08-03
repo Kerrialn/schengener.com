@@ -19,8 +19,8 @@ class AppController extends AbstractController
 {
 
     public function __construct(
-        private CalculatorService $calculatorService,
-        private CountryRepository $countryRepository,
+        private CalculatorService   $calculatorService,
+        private CountryRepository   $countryRepository,
         private TranslatorInterface $translator
 
     )
@@ -32,18 +32,13 @@ class AppController extends AbstractController
     {
         $form = $this->createForm(CalculatorFormType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $nationality = $form->get('nationality')->getData();
-            $entry = $form->get('entry')->getData();
-            $exit = $form->get('exit')->getData();
-            $stay = $this->calculatorService->calculate($entry, $exit);
-            $country = $this->countryRepository->findOneBy([
-                'code' => $nationality
-            ]);
 
-            if (!$country instanceof Country) {
-                $form->get('nationality')->addError(new FormError('unable to find country'));
-            }
+        $nationality = $form->get('nationality')->getData();
+        $entry = $form->get('entry')->getData();
+        $exit = $form->get('exit')->getData();
+
+        if ($entry && $exit) {
+            $stay = $this->calculatorService->calculate($entry, $exit);
 
             if ($stay->getEntry()->isAfter(Carbon::now())) {
                 $form->get('entry')->addError(new FormError('Entry can not be after today'));
@@ -52,18 +47,22 @@ class AppController extends AbstractController
             if ($stay->getExit()->isBefore($stay->getEntry())) {
                 $form->get('exit')->addError(new FormError('Exit can not be before entry'));
             }
+        }
 
-            return $this->renderForm('app/index.html.twig', [
-                'form' => $form,
-                'stay' => $stay,
-                'country' => $country
+        if ($nationality) {
+            $country = $this->countryRepository->findOneBy([
+                'code' => $nationality
             ]);
+
+            if (!$country instanceof Country) {
+                $form->get('nationality')->addError(new FormError('unable to find country'));
+            }
         }
 
         return $this->renderForm('app/index.html.twig', [
             'form' => $form,
-            'stay' => null,
-            'country' => null
+            'stay' => $stay ?? null,
+            'country' => $country ?? null
         ]);
     }
 
