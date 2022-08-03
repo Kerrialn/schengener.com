@@ -13,13 +13,16 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AppController extends AbstractController
 {
 
     public function __construct(
         private CalculatorService $calculatorService,
-        private CountryRepository $countryRepository
+        private CountryRepository $countryRepository,
+        private TranslatorInterface $translator
+
     )
     {
     }
@@ -51,7 +54,7 @@ class AppController extends AbstractController
             }
 
             if ($stay->getIsDurationOverNinetyDays()) {
-                $this->addFlash('error', 'over-ninety-day-stay');
+                $this->addFlash('error', $this->translator->trans('over-ninety-day-stay'));
             }
 
             return $this->renderForm('app/index.html.twig', [
