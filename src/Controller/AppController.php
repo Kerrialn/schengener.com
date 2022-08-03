@@ -53,10 +53,6 @@ class AppController extends AbstractController
                 $form->get('exit')->addError(new FormError('Exit can not be before entry'));
             }
 
-            if ($stay->getIsDurationOverNinetyDays()) {
-                $this->addFlash('error', $this->translator->trans('over-ninety-day-stay'));
-            }
-
             return $this->renderForm('app/index.html.twig', [
                 'form' => $form,
                 'stay' => $stay,
