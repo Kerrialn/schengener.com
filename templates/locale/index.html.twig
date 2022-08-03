@@ -1,0 +1,12 @@
+<turbo-frame id="locale-frame">
+    {{ form_start(form, {
+        action: path('locale_switch')
+    }) }}
+    <div class="input-group">
+        {{ form_widget(form.language) }}
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+    </div>
+    {{ form_end(form) }}
+</turbo-frame>

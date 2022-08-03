@@ -1,0 +1,119 @@
+{% import 'macro/component.macro.twig' as component %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" data-turbo="false">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                {% if country %}
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div>
+                                <div class="h3 m-0">{{ country.title|trans }}</div>
+                                <div class="text-muted">{{ 'traveler-nationality'|trans }}</div>
+                            </div>
+                            <div>
+                                <img class="img-fluid" height="50" width="50"
+                                     src="{{ asset('/icons/flags/'~ country.image) }}"/>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>{{ 'allowed-stay-for-90-days-in-180'|trans }}</div>
+                                <div class="h5 m-0">
+                                    {{ country.hasVisaWaiverAgreement ?  '<i class="bi bi-check-circle-fill text-success"></i>' : '<i class="bi bi-x-circle-fill text-danger"></i>' }}
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>{{ 'part-of-shengen-area'|trans }}</div>
+                                <div class="h5 m-0">
+                                    {{ country.isInShengenArea ?  '<i class="bi bi-check-circle-fill text-success"></i>' : '<i class="bi bi-x-circle-fill text-danger"></i>' }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-4">
+                {{ form_start(form) }}
+                <div class="card shadow">
+                    <div class="card-header h5">{{ 'shengen-visa-stay-calculator'|trans }}</div>
+                    <div class="card-body">
+                        {{ form_row(form.nationality) }}
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                {{ form_row(form.entry) }}
+                            </div>
+                            <div class="col-6">
+                                {{ form_row(form.exit) }}
+                            </div>
+                        </div>
+                    </div>
+                    {% if stay and country.hasVisaWaiverAgreement and not country.isInShengenArea %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <div>{{ 'stay-duration'|trans }}</div>
+                                    <div class="ms-1" role="button" data-bs-toggle="modal" data-bs-target="#stay-duration-modal">
+                                        <i class="bi bi-info-circle-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="{% if stay.isDurationOverNinetyDays %} text-danger {% endif %}">
+                                        {{ stay.durationInDays }}
+                                    </div>
+                                </div>
+                            </li>
+                            {% if stay.daysRemainingFromNinetyDays > 0 %}
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <div>{{ 'days-remaining'|trans }}</div>
+                                    </div>
+                                    <div>
+                                        {{ stay.daysRemainingFromNinetyDays }}
+                                    </div>
+                                </li>
+                            {% endif %}
+                            {% if stay.isDurationOverNinetyDays %}
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <div>{{ 'duration-over-ninety-days'|trans }}</div>
+                                        <div class="ms-1" role="button" data-bs-toggle="modal" data-bs-target="#over-stay-consequences-modal">
+                                            <i class="bi bi-info-circle-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div>{{ stay.overStayInDays }}</div>
+                                </li>
+                            {% endif %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div>{{ 'stay-allowed-until'|trans }}</div>
+                                <div>{{ stay.ninetyDaysAfterEntry|format_date }}</div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div>{{ 'next-nintey-day-entry-permited'|trans }}</div>
+                                <div>{{ stay.getNextNinteyDayEntry|format_date }}</div>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary w-100 mt-3">{{ 'submit'|trans }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    {{ component.modal(
+        'stay-duration-modal'|trans ,
+        'shengean-stay-rules'|trans,
+        path('shengen_stay_rules')
+    ) }}
+
+    {{ component.modal(
+        'over-stay-consequences-modal'|trans ,
+        'shengean-visa-overstay-consequences'|trans,
+        path('shengean_visa_overstay_consequences')
+    ) }}
+
+{% endblock %}

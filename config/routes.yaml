@@ -1,6 +1,21 @@
+index_redirect:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: 'index'
+        permanent: true
+        keepQueryParams: true
+        keepRequestMethod: true
+
 controllers:
     resource: ../src/Controller/
     type: annotation
+    prefix: /{_locale}
+    defaults:
+        _locale: en
+    requirements:
+        _locale: '[a-z]{2}'
+
 
 kernel:
     resource: ../src/Kernel.php
