@@ -10,7 +10,7 @@ return array (
   'traveler-nationality' => 'Travelers nationality',
   'allowed-stay-for-90-days-in-180' => 'permitted to stay in Schengen Area for 90 days in 180 days without visa',
   'part-of-shengen-area' => 'member state of Schengen Area',
-  'shengen-visa-stay-calculator' => 'Schengen Visa Stay Calculator',
+  'shengen-visa-stay-calculator' => 'Schengen Short-Stay Visa Calculator',
   'stay-duration' => 'stay duration',
   'days-remaining' => 'days-remaining',
   'duration-over-ninety-days' => 'days stayed over 90 days',

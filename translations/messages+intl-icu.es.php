@@ -10,7 +10,7 @@ return array(
     'traveler-nationality' => 'Nacionalidad de los viajeros',
     'allowed-stay-for-90-days-in-180' => 'permitido permanecer en el Área Schengen durante 90 días en 180 días sin visa',
     'part-of-shengen-area' => 'estado miembro del espacio Schengen',
-    'shengen-visa-stay-calculator' => 'Calculadora de estancia de visa Schengen',
+    'shengen-visa-stay-calculator' => 'Calculadora de visas Schengen para estadías cortas',
     'stay-duration' => 'duración de la estancia',
     'days-remaining' => 'días restantes',
     'duration-over-ninety-days' => 'días de estancia más de 90 días',

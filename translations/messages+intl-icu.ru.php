@@ -9,7 +9,7 @@ return array (
     'traveler-nationality' => 'Национальность путешественников',
     'allowed-stay-for-90-days-in-180' => 'разрешено находиться в Шенгенской зоне в течение 90 дней в течение 180 дней без визы',
     'part-of-shengen-area' => 'государство-член Шенгенской зоны',
-    'shengen-visa-stay-calculator' => 'Калькулятор пребывания в Шенгенской визе',
+    'shengen-visa-stay-calculator' => 'Калькулятор краткосрочной шенгенской визы',
     'stay-duration' => 'продолжительность пребывания',
     'days-remaining' => 'оставшиеся дни',
     'duration-over-ninety-days' => 'дней больше осталось',

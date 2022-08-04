@@ -10,7 +10,7 @@ return array(
     'traveler-nationality' => 'جنسية المسافر',
     'allowed-stay-for-90-days-in-180' => 'يُسمح بالبقاء في منطقة شنغن لمدة 90 يومًا في 180 يومًا بدون تأشيرة',
     'part-of-shengen-area' => 'دولة عضو في منطقة شنغن',
-    'shengen-visa-stay-calculator' => 'حاسبة تأشيرة شنغن للإقامة',
+    'shengen-visa-stay-calculator' => 'حاسبة تأشيرة شنغن قصيرة الأمد',
     'stay-duration' => 'مدة البقاء',
     'days-remaining' => 'الأيام المتبقية',
     'duration-over-ninety-days' => 'أيام بقيت أكثر من 90 يومًا',

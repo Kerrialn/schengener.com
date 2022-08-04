@@ -10,7 +10,7 @@ return array (
   'traveler-nationality' => 'לאום מטיילים',
   'allowed-stay-for-90-days-in-180' => 'מותר לשהות באזור שנגן 90 ימים ב-180 ימים ללא ויזה',
   'part-of-shengen-area' => 'מדינה חברה באזור שנגן',
-  'shengen-visa-stay-calculator' => 'מחשבון שהייה של אשרת שנגן',
+  'shengen-visa-stay-calculator' => 'מחשבון אשרת שנגן לשהייה קצרה',
   'stay-duration' => 'משך השהייה',
   'days-remaining' => 'ימים שנותרו',
   'duration-over-ninety-days' => 'ימים נשארו מעל 90 ימים',
