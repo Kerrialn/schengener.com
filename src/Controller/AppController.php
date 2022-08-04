@@ -40,10 +40,6 @@ class AppController extends AbstractController
         if ($entry && $exit) {
             $stay = $this->calculatorService->calculate($entry, $exit);
 
-            if ($stay->getEntry()->isAfter(Carbon::now())) {
-                $form->get('entry')->addError(new FormError('Entry can not be after today'));
-            }
-
             if ($stay->getExit()->isBefore($stay->getEntry())) {
                 $form->get('exit')->addError(new FormError('Exit can not be before entry'));
             }
