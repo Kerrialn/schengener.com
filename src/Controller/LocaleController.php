@@ -27,7 +27,7 @@ class LocaleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $locale = $form->get('language')->getData();
-            return $this->redirectToRoute('index', array_merge($request->query->all()) );
+            return $this->redirectToRoute('index', ['_locale' => $locale]);
         }
 
 

@@ -1,7 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.getLocale() }}">
 <head>
-    <meta charset="utf-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RC2MRY6R6Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-RC2MRY6R6Y');
+    </script>
+    <meta name="title" content="Schengener">
+    <meta name="description" content="Schengener provides an easy to use Schengen visa short-stay visa calculator. Never over stay your visa again, simply add in your dates and calculate.">
+    <meta name="keywords" content="Schengen visa short-stay visa calculator, Schengen visa calculator ">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Schengener{% endblock %}</title>
     <link rel="icon"
@@ -15,7 +28,6 @@
     {% endblock %}
 </head>
 <body>
-
 <nav class="navbar bg-light mb-3">
     <div class="container">
         <span class="navbar-brand mb-0 h1">Shengeaner</span>

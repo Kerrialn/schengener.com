@@ -1,6 +1,8 @@
 <?php
 
 return array (
+   'site-information-and-purpose'=> 'Schengener provides an easy to use Schengen visa short-stay visa calculator. Never over stay your visa again, simply add in your dates and calculate.',
+  'disclaimer' => 'Please be aware Schengener provides assistance only. It does not constitute a right to stay for a period resulting from its calculation, nor is it travel advice. Schengener is not in anyway an official or affiliate service provided by the European Union.',
   'nationality' => 'nationality',
   'entry-date' => 'Entry date',
   'exit-date' => 'Exit date',
