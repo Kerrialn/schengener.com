@@ -14,7 +14,6 @@ if ($trustedProxies) {
 }
 
 if ($_SERVER['APP_DEBUG_TOKEN'] === $_COOKIE['XDEBUG_TRACE']) {
-    $_SERVER['APP_ENV'] = 'dev';
     $_SERVER['APP_DEBUG'] = 1;
 }
 
