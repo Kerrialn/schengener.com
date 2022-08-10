@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use App\Dto\StayDataTransferObject;
 use App\Entity\Country;
+use App\Factory\XmlResponseFactory;
 use App\Form\CalculatorFormType;
 use App\Repository\CountryRepository;
 use App\Service\CalculatorService\CalculatorService;
-use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
+use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class AppController extends AbstractController
 {
@@ -21,8 +25,7 @@ class AppController extends AbstractController
     public function __construct(
         private CalculatorService   $calculatorService,
         private CountryRepository   $countryRepository,
-        private TranslatorInterface $translator
-
+        private SerializerInterface $serializer
     )
     {
     }
@@ -74,4 +77,25 @@ class AppController extends AbstractController
         return $this->render('/rules/shengean-visa-overstay-consequences-modal.html.twig');
     }
 
+    #[Route(path: '/sitemap', name: 'sitemap')]
+    public function sitemap(Request $request) : Response
+    {
+        $encoders = [new XmlEncoder()];
+        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader());
+        $normalizer = new ObjectNormalizer($classMetadataFactory);
+        $serializer = new Serializer([$normalizer], $encoders);
+
+        $data =  [
+            'url' => [
+                'loc' => 'https://schengener.com/en/',
+                'lastmod' => '2022-08-09T15:43:29+00:00'
+            ]
+        ];
+
+       $xml = $serializer->encode($data, 'xml');
+
+        return new Response($xml, 200, [
+            'Content-Type' => 'application/xml;charset=UTF-8'
+        ]);
+    }
 }
