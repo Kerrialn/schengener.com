@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
-$string = $this->getRequest()->getCookie('mycookie');
-
 if ($_SERVER['APP_DEBUG_TOKEN']) {
     umask(0000);
     Debug::enable();
