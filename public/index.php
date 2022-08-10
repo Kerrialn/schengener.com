@@ -16,6 +16,7 @@ if ($trustedProxies) {
 if ($_SERVER['APP_ENV'] == 'prod' && $_SERVER['APP_DEBUG_TOKEN'] === $_COOKIE['XDEBUG_TRACE']) {
     umask(0000);
     Debug::enable();
+    $_SERVER['APP_DEBUG'] = 1;
 }
 
 return function (array $context) {
