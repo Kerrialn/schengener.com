@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
+dd($_SERVER['APP_DEBUG_TOKEN'] === $_COOKIE['XDEBUG_TRACE']);
+
 $trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false;
 $trustedProxies = $trustedProxies ? explode(',', $trustedProxies) : [];
 if ($_SERVER['APP_ENV'] == 'prod') $trustedProxies[] = $_SERVER['REMOTE_ADDR'];
